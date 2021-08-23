@@ -1,0 +1,46 @@
+* {
+    font-family: 'Montserrat', sans-serif;
+    box-sizing: border-box;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    margin: -20px 0 50px;
+    background: linear-gradient(90deg, rgba(238,209,225,1) 0%, rgba(235,153,221,1) 30%, rgba(231,111,90,1) 65%, rgba(232,167,76,1) 100%);
+}
+.everything {
+    background-color: white;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    position: relative;
+    overflow: hidden;
+    width: 768px;
+    max-width: 100%;
+    min-height: 480px;
+}
+.headerandform {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    left: 50%;
+    z-index: 2;
+    text-align: center;
+}
+.overlaymecontainer {
+    position: absolute;
+    top: 0;
+    left: 0%;
+    width: 50%;
+    height: 100%;
+    background-image: url(https://images.unsplash.com/photo-1487376318617-f43c7b41e2e2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80);
+    background-position: 40% 50%;
+    background-size: 850px;
+}
+.submitbutton {
+    border: 0px;
+    background: linear-gradient(90deg, rgba(238,209,225,1) 0%, rgba(235,153,221,1) 30%, rgba(231,111,90,1) 65%, rgba(232,167,76,1) 100%);
+    color: white;
+}

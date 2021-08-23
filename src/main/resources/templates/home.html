@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en"
+
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org http://www.thymeleaf.org
+http://www.ultraq.net.nz/thymeleaf/layout http://www.ultraq.net.nz/thymeleaf/layout
+http://www.thymeleaf.org/thymeleaf-extras-springsecurity4 http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset = "utf-8">
+    <meta name = "description" content ="This is home page or landing page" >
+    <meta name = "keyword" content = "html java mysql put 10 or 15 keywords for google">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home Page</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Tokyo+Zoo&family=Montserrat:wght@200&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="homepagestyle.css">
+
+</head>
+<head>
+    <title>Home Page</title>
+
+
+    </style>
+</head>
+
+<body>
+<header>
+    <h1>More Than Salad</h1>
+    <span id="changeme">Please press any key</span>
+    <span th:text="${session.user.firstname} + '!'"></span>
+    <div class="dropdown">
+        <button>Menu</button>
+        <div class="dropdown-content">
+            <a href="/profile">Profile</a>
+            <a href="/home">Home</a>
+            <a href="/choosemeals">Meals</a>
+            <a href="/addmeal">Add Meal</a>
+            <a href="/vieworders">View Orders</a>
+            <a href="/deliveries">Deliveries</a>
+            <a href="/allmeals">All Meals</a>
+        </div>
+    </div>
+</header>
+<section>
+    <img src = "https://images.unsplash.com/photo-1501619951397-5ba40d0f75da?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cGluayUyMG9yYW5nZSUyMHN1bnNldHxlbnwwfDB8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=60" id = "sunsetoftheweek"/>
+    <p class = "LeftLabels">Your meals this week:</p>
+    <div style="overflow-x:auto;">
+        <table style="width:100%">
+            <tr>
+                <td><img src = "https://images.unsplash.com/photo-1484980972926-edee96e0960d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80" width = "300px" height = "300px" /></td>
+                <td><img src = "https://images.unsplash.com/photo-1497888329096-51c27beff665?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1502&q=80" width = "300px" height = "300px" /></td>
+                <td><img src = "https://images.unsplash.com/photo-1585238342070-61e1e768b1ff?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1600&q=80" width = "300px" height = "300px" /></td>
+                <td><img src = "https://images.unsplash.com/photo-1541014741259-de529411b96a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1567&q=80" width = "300px" height = "300px" /></td>
+            </tr>
+            <tr>
+                <td><p>Fresh pesto hummus with tomato, cucumber, and pita</p></td>
+                <td><p>Oats with coconut yogurt, passion fruit, orange, and berries</p></td>
+                <td><p>Southwestern cous cous bowl with vegan chicken, corn, and avocado</p></td>
+                <td><p>Tofu and vegetable summer rolls with spicy peanut dipping sauce</p></td>
+            </tr>
+        </table>
+    </div>
+    <p class = "LeftLabels">Check out the other delicious options:</p>
+    <div style="overflow-x:auto;">
+        <table style="width:100%">
+            <tr>
+                <td><img src = "https://images.unsplash.com/photo-1498601761256-9e93c6f5c181?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1442&q=80" width = "300px" height = "300px" /></td>
+                <td><img src = "https://images.unsplash.com/photo-1580916883250-437bcb0fec1d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80" width = "300px" height = "300px" /></td>
+                <td><img src = "https://images.unsplash.com/photo-1551978129-b73f45d132eb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1408&q=80" width = "300px" height = "300px" /></td>
+                <td><img src = "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1275&q=80" width = "300px" height = "300px" /></td>
+            </tr>
+            <tr>
+                <td><p>Vegetable stir fry with soba noodles and sesame</p></td>
+                <td><p>Arugala, apple, pomegranate, and walnut salad with citrus vinegarette</p></td>
+                <td><p>Flatbread with arugala, fresh tomato, sun dried tomato, red onion, and balsamic glaze</p></td>
+                <td><p>Roasted stuffed eggplant topped with cashew cream paired with a tomato, red onion, and bell pepper salad</p></td>
+            </tr>
+        </table>
+    </div>
+</section>
+<footer></footer>
+</body>
+<script type="text/javascript">
+    console.log("=======im trying to change words=========")
+    document.addEventListener('keypress', custommessage());
+    function custommessage()
+    {
+        var a = new Date();
+        var c = getWeekday(a.getDay());
+        console.log("Happy " + c + "!");
+        document.getElementById('changeme').innerHTML="Happy " + c + ",";
+    }
+    function getWeekday(n)
+    {
+        var weekday = "day";
+        switch(n)
+        {
+            case 0:
+                weekday = "Sunday";
+                break;
+            case 1:
+                weekday = "Monday";
+                break;
+            case 2:
+                weekday = "Tuesday";
+                break;
+            case 3:
+                weekday = "Wednesday";
+                break;
+            case 4:
+                weekday = "Thursday";
+                break;
+            case 5:
+                weekday = "Friday";
+                break;
+            case 6:
+                weekday = "Saturday";
+                break;
+        }
+        return weekday;
+    }
+</script>
+</html>

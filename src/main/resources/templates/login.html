@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en"
+
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org http://www.thymeleaf.org
+  http://www.ultraq.net.nz/thymeleaf/layout http://www.ultraq.net.nz/thymeleaf/layout
+  http://www.thymeleaf.org/thymeleaf-extras-springsecurity4 http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Login Page</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Tokyo+Zoo&family=Montserrat:wght@200&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="loginstyle.css">
+
+</head>
+<body>
+<header>
+    <h1>More Than Salad</h1>
+</header>
+<section>
+    <div class = "form">
+        <h2>Login</h2>
+        <!-- login form  -->
+        <form th:action = "@{/home}" method = "post">
+            <input type="text" name="username" id="username" th:value="${username}" required />
+            <br/>
+            <br/>
+            <input type="text" name="password" id="password" th:value="${password}" required />
+            <br/>
+            <br/>
+            <input type = "submit" value = "                 Login                 " class = "submitbutton">
+            <br/>
+        </form>
+        <div>
+            <p>Not a member?</p>
+            <a href="index">register</a>
+            <br/>
+            <br/>
+        </div>
+    </div>
+</section>
+</body>
+</html>

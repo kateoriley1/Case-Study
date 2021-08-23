@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset = "utf-8">
+    <meta name = "description" content ="This is home page or landing page" >
+    <meta name = "keyword" content = "html java mysql put 10 or 15 keywords for google">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Account Settings</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Tokyo+Zoo&family=Montserrat:wght@200&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="profilestyle.css">
+
+</head>
+<body>
+<header>
+    <h1>More Than Salad</h1>
+    <span id="changeme">Hope you're having an amazing day!</span>
+
+    <div class="dropdown">
+        <button>Menu</button>
+        <div class="dropdown-content">
+            <a href="/profile">Profile</a>
+            <a href="/home">Home</a>
+            <a href="#">Link 3</a>
+        </div>
+    </div>
+</header>
+<section>
+    <h2>Account Settings</h2>
+    <p class = "LeftLabels">Contact Info</p>
+    <div style="overflow-x:auto;">
+        <form>
+            <table style="width:100%">
+                <tr>
+                    <td>First Name: <span th:text="${session.user.firstname}"></span></td>
+                    <td>Last Name: <span th:text="${session.user.lastname}"></span></td>
+                    <td>Email: <span th:text="${session.user.email}"></span></td>
+                </tr>
+                <tr>
+                    <td><p><input type = "text" id = "fname" placeholder = "New First Name" /></p></td>
+                    <td><p><input type = "text" id = "lname" placeholder = "New Last Name" /></p></td>
+                    <td><p><input type = "text" id = "email" placeholder = "New Email" /></p></td>
+                </tr>
+                <tr>
+                    <td>Phone: phone</td><!-- <p th:text="${session.user.phone}"></p> -->
+                    <td>Username: <span th:text="${session.user.username}"></span></td>
+                    <td>Password: <span th:text="${session.user.password}"></span></td>
+                </tr>
+                <tr>
+                    <td><p><input type = "text" id = "phone" placeholder = "New Phone" /></p></td>
+                    <td><p><input type = "text" id = "uname" placeholder = "New Username" /></p></td>
+                    <td><p><input type = "text" id = "pass" placeholder = "New Password" /></p></td>
+                </tr>
+            </table>
+            <input type = "submit" value = "Submit" class = "submitbutton" id = "submitContactUpdate">
+        </form>
+        <button onclick="viewUpdateContactForm()">Update Contact Info</button>
+    </div>
+</section>
+<section>
+    <p class = "LeftLabels">Delivery Info</p>
+    <div style="overflow-x:auto;">
+        <form>
+            <table style="width:100%">
+                <tr>
+                    <td>Delivery date/time: Wednesdays at 3pm</td>
+                    <td>Shipping Address 1: 123 E. 5th St.</td>
+                    <td>Shipping Address 2: apt. 123</td>
+                </tr>
+                <tr>
+                    <td><p><input type = "text" id = "ddate" placeholder = "0" /></p></td>
+                    <td><p><input type = "text" id = "shipadd1" placeholder = "0" /></p></td>
+                    <td><p><input type = "text" id = "shipadd2" placeholder = "0" /></p></td>
+                </tr>
+                <tr>
+                    <td>City: phx</td>
+                    <td>State: az</td>
+                    <td>zip code: 12345</td>
+                </tr>
+                <tr>
+                    <td><p><input type = "text" id = "city" placeholder = "0" /></p></td>
+                    <td><p><input type = "text" id = "state" placeholder = "0" /></p></td>
+                    <td><p><input type = "text" id = "zip" placeholder = "0" /></p></td>
+                </tr>
+            </table>
+            <input type = "submit" value = "Submit" class = "submitbutton" id = "submitDeliveryUpdate">
+        </form>
+        <button onclick="viewUpdateDeliveryForm()">Update Delivery Info</button>
+    </div>
+</section>
+<section>
+    <p class = "LeftLabels">Payment Info</p>
+    <div style="overflow-x:auto;">
+        <form>
+            <table style="width:100%">
+                <tr>
+                    <td>Card number: 4000 8000 7600 9000</td>
+                </tr>
+                <tr>
+                    <td><p><input type = "text" id = "cardnum" placeholder = "0" /></p></td>
+                </tr>
+            </table>
+            <input type = "submit" value = "Submit" class = "submitbutton" id = "submitPaymentUpdate">
+        </form>
+        <button onclick="viewUpdatePaymentForm()">Update Payment Info</button>
+    </div>
+</section>
+<section>
+    <p class = "LeftLabels">Meal Info</p>
+    <div style="overflow-x:auto;">
+        <form>
+            <table style="width:100%">
+                <tr>
+                    <td>Number of meals per week: 4</td>
+                </tr>
+                <tr>
+                    <td><p><input type = "text" id = "mealnum" placeholder = "0" /></p></td>
+                </tr>
+            </table>
+            <input type = "submit" value = "Submit" class = "submitbutton" id = "submitMealUpdate">
+        </form>
+        <button onclick="viewUpdateMealForm()">Update Meal Info</button>
+    </div>
+</section>
+<section>
+    <p class = "LeftLabels">Cancel</p>
+    <form action="https://google.com">
+        <input type="submit" value="Cancel my plan" />
+    </form>
+</section>
+<footer></footer>
+</body>
+<script type="text/javascript">
+    function viewUpdateContactForm(){
+        document.getElementById('fname').style.display='block';
+        document.getElementById('lname').style.display='block';
+        document.getElementById('email').style.display='block';
+        document.getElementById('phone').style.display='block';
+        document.getElementById('uname').style.display='block';
+        document.getElementById('pass').style.display='block';
+        document.getElementById('submitContactUpdate').style.display='block';
+    }
+    function viewUpdateDeliveryForm(){
+        document.getElementById('ddate').style.display='block';
+        document.getElementById('shipadd1').style.display='block';
+        document.getElementById('shipadd2').style.display='block';
+        document.getElementById('city').style.display='block';
+        document.getElementById('state').style.display='block';
+        document.getElementById('zip').style.display='block';
+        document.getElementById('submitDeliveryUpdate').style.display='block';
+    }
+    function viewUpdatePaymentForm(){
+        document.getElementById('cardnum').style.display='block';
+    }
+    function viewUpdateMealForm(){
+        document.getElementById('mealnum').style.display='block';
+    }
+</script>
+</html>

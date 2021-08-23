@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action = "@{/successaddedmeal}" method = "post" th:object="${themeal}"> <!--javascript validate on submit here-->
+    <!--<input type = "text" name = "Code" th:field="*{mealcode}" required/>
+    <br/>
+    <br/>-->
+    Meal Name
+    <input type = "text" id = "Meal Name" th:field="*{mealname}" required/>
+    <br/>
+    <br/>
+    Description
+    <input type = "text" id = "Description" th:field="*{mealdescription}" required/>
+    <br/>
+    <br/>
+    Instructions
+    <input type = "text" id = "Meal Instructions" th:field="*{mealinstructions}" required/>
+    <br/>
+    <br/>
+    Url
+    <input type = "text" id = "Photo URL" th:field="*{photourl}" required/>
+    <br/>
+    <br/>
+
+    <input type = "submit" value = "   Submit   " class = "submitbutton">
+    <br/>
+    <br/>
+</form>
+</body>
+</html>

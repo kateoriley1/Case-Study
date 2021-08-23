@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org http://www.thymeleaf.org
+  http://www.ultraq.net.nz/thymeleaf/layout https://www.ultraq.net.nz/thymeleaf/layout
+  http://www.thymeleaf.org/thymeleaf-extras-springsecurity4 http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8">
+    <title>Register Page</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Tokyo+Zoo&family=Montserrat:wght@200&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="registerstyle.css">
+</head>
+<body>
+<div class = "everything">
+    <div class = "headerandform">
+        <header>
+            <h1>Sign up</h1>
+        </header>
+        <section>
+            <!-- login form  -->
+            <form th:action = "@{/login}" method = "post" th:object="${theuser}"> <!--javascript validate on submit here-->
+                <input type = "text" id = "First Name" placeholder = "First Name" th:field="*{firstname}" required/>
+                <br/>
+                <br/>
+                <input type = "text" id = "Last Name" placeholder = "Last Name" th:field="*{lastname}" required/>
+                <br/>
+                <br/>
+                <input type = "text" id = "Email" placeholder = "Email Address" th:field="*{email}" required/>
+                <br/>
+                <!--   <input type = "number" name = "phone" th:field="*{phone}" /> -->
+                <br/>
+                <input type = "text" id = "Username" placeholder = "Username" th:field="*{username}" required/>
+                <br/>
+                <br/>
+                <input type = "password" id = "Password" placeholder = "Password" th:field="*{password}" required/>
+                <br/>
+                <br/>
+                <input type = "password" id = "Confirm Password" placeholder = "Confirm Password" required/>
+                <br/>
+                <br/>
+
+                <input type = "checkbox" id = "chkb1" value = "termsofservice"/>
+                <label>I agree to terms of service</label>
+                <br/>
+                <br/>
+
+                <input type = "submit" value = "   Sign up   " class = "submitbutton">
+                <br/>
+                <br/>
+            </form>
+            <a href="login">I already have an account</a>
+        </section>
+    </div>
+    <div class = "overlaymecontainer">
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    function validate()
+    {
+        event.preventDefault();
+        var b = false;
+
+        //check email
+        var email = document.getElementById("Email").value;
+        var atsymbol = email.indexOf("@");
+        var period =  email.lastIndexOf(".");
+        if(period - atsymbol < 2)
+        {
+            alert("Please enter a valid email address");
+            return b;
+        }
+
+        //check password
+        var pass = document.getElementById("Password").value;
+        var confpass = document.getElementById("Confirm Password").value;
+        if (pass != confpass)
+        {
+            alert("Passwords do not match");
+            console.log(pass);
+            console.log(confpass);
+            return b;
+        }
+
+        //check terms of service
+        var chkbx = document.getElementById("chkb1");
+        if (chkbx.checked == false)
+        {
+            alert("Please agree to terms of service");
+            return b;
+        }
+
+        // //personalized welcome message
+        // else {
+        //     var name = document.getElementById("First Name").value;
+        //     alert("Welcome, " + name);
+        // }
+        b = true;
+        console.log(b);
+        window.location.href = 'http://127.0.0.1:5500/homepage.html';
+        return b;
+    }
+</script>
+</html>

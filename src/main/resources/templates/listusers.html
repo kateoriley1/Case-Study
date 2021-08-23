@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/listusers}">
+    <input type="text" name="username" id="username" th:value="${username}" required />
+    <input type="text" name="password" id="password" th:value="${password}" required />
+    <input type="submit" value="Search" />
+    <input type="button" value="Clear" onclick="clearSearch()" />
+</form>
+<h1>User exists with Username And Password:</h1>
+<table>
+    <thead>
+    <tr>
+        <th> Valid? </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td th:text="${isValid}"></td>
+    </tr>
+    </tbody>
+</table>
+<h1>All Users</h1>
+<table>
+    <thead>
+    <tr>
+        <th> ID </th>
+        <th> First </th>
+        <th> Last </th>
+        <th> Email </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${listUsers.empty}">
+        <td colspan="2"> No Users Available </td>
+    </tr>
+    <tr th:each="lu : ${listUsers}">
+        <td><span th:text="${lu.id}"></span></td>
+        <td><span th:text="${lu.firstname}"></span></td>
+        <td><span th:text="${lu.lastname}"></span></td>
+        <td><span th:text="${lu.email}"></span></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+<script type="text/javascript">
+    function clearSearch() {
+        window.location = "[[@{/listusers}]]";
+    }
+</script>
+</html>

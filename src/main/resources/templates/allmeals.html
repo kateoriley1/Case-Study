@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>All meals</h1>
+<table>
+    <thead>
+    <tr>
+        <th> ID </th>
+        <th> Name </th>
+        <th> Description </th>
+        <th> Instructions </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${listAllMeals.empty}">
+        <td colspan="2"> No Users Available </td>
+    </tr>
+    <tr th:each="lu : ${listAllMeals}">
+        <td><span th:text="${lu.mealcode}"></span></td>
+        <td><span th:text="${lu.mealname}"></span></td>
+        <td><span th:text="${lu.mealdescription}"></span></td>
+        <td><span th:text="${lu.mealinstructions}"></span></td>
+        <td><img th:attr="src=${lu.photourl},alt=${lu.mealdescription}"
+                height="300" width="300"/></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
