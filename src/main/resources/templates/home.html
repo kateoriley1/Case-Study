@@ -50,11 +50,17 @@ http://www.thymeleaf.org/thymeleaf-extras-springsecurity4 http://www.thymeleaf.o
 <section>
     <img src = "https://images.unsplash.com/photo-1501619951397-5ba40d0f75da?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cGluayUyMG9yYW5nZSUyMHN1bnNldHxlbnwwfDB8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=60" id = "sunsetoftheweek"/>
     <p class = "LeftLabels">Your meals this week:</p>
+    <p th:if="${session.user.meals.isEmpty()}">No meals selected.</p>
     <div style="overflow-x:auto;">
+        <div th:if="${!session.user.meals.isEmpty()}">
         <table style="width:100%">
-            <tr th:if="${session.user.meals.isEmpty()}">
-                <td colspan="2"> No Meals Available </td>
             </tr>
+<!--            <tr>-->
+<!--                <td><img th:attr="src=${session.user.meals[0].photourl} ?: 'https://www.smartdatajob.com/images/joomlart/demo/default.jpg'" width = "300px" height = "300px" /></td>-->
+<!--                <td><img th:attr="src=${session.user.meals[1].photourl} ?: 'https://www.smartdatajob.com/images/joomlart/demo/default.jpg'" width = "300px" height = "300px" /></td>-->
+<!--                <td><img th:attr="src=${session.user.meals[2].photourl} ?: 'https://www.smartdatajob.com/images/joomlart/demo/default.jpg'" width = "300px" height = "300px" /></td>-->
+<!--                <td><img th:attr="src=${session.user.meals[3].photourl} ?: 'https://www.smartdatajob.com/images/joomlart/demo/default.jpg'" width = "300px" height = "300px" /></td>-->
+<!--            </tr>-->
             <tr>
                 <td><img th:attr="src=${session.user.meals[0].photourl}" width = "300px" height = "300px" /></td>
                 <td><img th:attr="src=${session.user.meals[1].photourl}" width = "300px" height = "300px" /></td>
@@ -68,6 +74,7 @@ http://www.thymeleaf.org/thymeleaf-extras-springsecurity4 http://www.thymeleaf.o
                 <td><p th:text="${session.user.meals[3].mealdescription}"></p></td>
             </tr>
         </table>
+        </div>
     </div>
     <p class = "LeftLabels">Check out some of our highlighted options this week:</p>
     <div style="overflow-x:auto;">

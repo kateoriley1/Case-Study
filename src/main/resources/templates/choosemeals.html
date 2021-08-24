@@ -41,22 +41,22 @@
     <div style="overflow-x:auto;">
             <table style="width:100%">
                 <tr>
-                    <td><img src = "https://images.unsplash.com/photo-1484980972926-edee96e0960d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80" width = "300px" height = "300px" /></td>
-                    <td><img src = "https://images.unsplash.com/photo-1497888329096-51c27beff665?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1502&q=80" width = "300px" height = "300px" /></td>
-                    <td><img src = "https://images.unsplash.com/photo-1585238342070-61e1e768b1ff?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1600&q=80" width = "300px" height = "300px" /></td>
-                    <td><img src = "https://images.unsplash.com/photo-1541014741259-de529411b96a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1567&q=80" width = "300px" height = "300px" /></td>
+                    <td><img th:attr="src=${currentmeals[0].photourl}" width = "300px" height = "300px" /></td>
+                    <td><img th:attr="src=${currentmeals[1].photourl}" width = "300px" height = "300px" /></td>
+                    <td><img th:attr="src=${currentmeals[2].photourl}" width = "300px" height = "300px" /></td>
+                    <td><img th:attr="src=${currentmeals[3].photourl}" width = "300px" height = "300px" /></td>
                 </tr>
                 <tr>
-                    <td><p>Fresh pesto hummus with tomato, cucumber, and pita</p></td>
-                    <td><p>Oats with coconut yogurt, passion fruit, orange, and berries</p></td>
-                    <td><p>Southwestern cous cous bowl with vegan chicken, corn, and avocado</p></td>
-                    <td><p>Tofu and vegetable summer rolls with spicy peanut dipping sauce</p></td>
+                    <td><p th:text="${currentmeals[0].mealdescription}"></p></td>
+                    <td><p th:text="${session.user.meals[1].mealdescription}"></p></td>
+                    <td><p th:text="${session.user.meals[2].mealdescription}"></p></td>
+                    <td><p th:text="${session.user.meals[3].mealdescription}"></p></td>
                 </tr>
                 <tr>
-                    <td><img src = "https://images.unsplash.com/photo-1498601761256-9e93c6f5c181?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1442&q=80" width = "300px" height = "300px" /></td>
-                    <td><img src = "https://images.unsplash.com/photo-1580916883250-437bcb0fec1d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80" width = "300px" height = "300px" /></td>
-                    <td><img src = "https://images.unsplash.com/photo-1551978129-b73f45d132eb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1408&q=80" width = "300px" height = "300px" /></td>
-                    <td><img src = "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1275&q=80" width = "300px" height = "300px" /></td>
+                    <td><img th:attr="src=${currentmeals[4].photourl}" width = "300px" height = "300px" /></td>
+                    <td><img th:attr="src=${currentmeals[5].photourl}" width = "300px" height = "300px" /></td>
+                    <td><img th:attr="src=${currentmeals[6].photourl}" width = "300px" height = "300px" /></td>
+                    <td><img th:attr="src=${currentmeals[7].photourl}" width = "300px" height = "300px" /></td>
                 </tr>
                 <tr>
                     <td><p>Vegetable stir fry with soba noodles and sesame</p></td>

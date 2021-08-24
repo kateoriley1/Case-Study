@@ -17,30 +17,31 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
 @Controller
 @Slf4j //logs
-@SessionAttributes({"theuser", "thename"})
+@SessionAttributes({"theuser", "thename","user"})
 public class HomeController {
 
-    @Autowired
+//    @Autowired
     private CurrentMealsRepo currentMealsRepo;
 
-    @Autowired
+//    @Autowired
     private MealRepo mealRepo;
 
     private UserServices userServices;
-//    private MealServices mealServices;
+
     @Autowired
-    private HomeController (UserServices userServices){
+    public HomeController(CurrentMealsRepo currentMealsRepo, MealRepo mealRepo, UserServices userServices) {
+        this.currentMealsRepo = currentMealsRepo;
+        this.mealRepo = mealRepo;
         this.userServices = userServices;
     }
-//    @Autowired
-//    private HomeController (MealServices mealServices){
-//        this.mealServices = mealServices;
-//    }
+
 
     @GetMapping({ "/", "index"})
     public String showIndex(Model model) {
@@ -75,7 +76,9 @@ public class HomeController {
             return "login";
         }
         User user = listUsersByUserAndPass.get(0);
+//        List<Meal> userMealslist = user.getMeals();
         model.addAttribute("user", user);
+//        model.addAttribute("userMealsList", userMealslist);
         List<Meal> allMeals = mealRepo.findAll();
         model.addAttribute("allMeals", allMeals);
         session.setAttribute("user", user);
@@ -91,6 +94,9 @@ public class HomeController {
 
     @ModelAttribute("theuser")
     public User userInit() { return new User();}
+
+    @ModelAttribute("user")
+    public User userIni() { return new User();}
 
     @GetMapping("/addmeal")
     public String showAddMeal(Model model) {
@@ -151,6 +157,16 @@ public class HomeController {
 
     @GetMapping("/choosemeals")
     public String showChooseMeals(Model model){
+        List<Integer> currentMealIds = currentMealsRepo.getAllIds();
+        List<Meal> meals = mealRepo.findAll();
+        List<Meal> currentmeals = Collections.emptyList();
+        for(Meal meal:meals) {
+            if (currentMealIds.contains(meal.getMealcode()))
+            {
+                currentmeals.add(meal);
+            }
+        }
+        model.addAttribute("currentmeals", currentmeals);
         return "choosemeals";
     }
 
@@ -177,6 +193,13 @@ public class HomeController {
     @GetMapping("/vieworders")
     public String showViewOrders(Model model){
         return "vieworders";
+    }
+
+    @PostMapping("/updatedcontact")
+    public String updatedContact(@ModelAttribute("user") User user, Model model, @Param("newfname") String fname) {
+        user.setFirstname(fname);
+        userServices.saveUser(user);
+        return "updatedcontact";
     }
 
 }
