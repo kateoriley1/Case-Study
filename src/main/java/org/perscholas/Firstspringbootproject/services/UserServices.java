@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -51,6 +52,18 @@ public class UserServices {
             return false;
         }
         return true;
+    }
+
+    public User findByID(Integer id)
+    {
+        Optional<User> u = userRepo.findById(id);
+        if (u.isPresent())
+        {
+            return u.get();
+        }
+        else {
+            return null;
+        }
     }
 
 }

@@ -1,9 +1,12 @@
 package org.perscholas.Firstspringbootproject.controllers;
 
 import lombok.extern.slf4j.Slf4j;
+import org.perscholas.Firstspringbootproject.dao.CurrentMealsRepo;
 import org.perscholas.Firstspringbootproject.dao.MealRepo;
+import org.perscholas.Firstspringbootproject.models.CurrentMeals;
 import org.perscholas.Firstspringbootproject.models.Meal;
 import org.perscholas.Firstspringbootproject.models.User;
+import org.perscholas.Firstspringbootproject.services.MealServices;
 import org.perscholas.Firstspringbootproject.services.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -15,14 +18,15 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @Slf4j //logs
 @SessionAttributes({"theuser", "thename"})
 public class HomeController {
 
-//    @Autowired
-//    private UserRepo userRepo;
+    @Autowired
+    private CurrentMealsRepo currentMealsRepo;
 
     @Autowired
     private MealRepo mealRepo;
@@ -72,12 +76,16 @@ public class HomeController {
         }
         User user = listUsersByUserAndPass.get(0);
         model.addAttribute("user", user);
+        List<Meal> allMeals = mealRepo.findAll();
+        model.addAttribute("allMeals", allMeals);
         session.setAttribute("user", user);
         return "home";
     }
 
     @GetMapping("/home")
     public String showHome(Model model){
+        List<Meal> allMeals = mealRepo.findAll();
+        model.addAttribute("allMeals", allMeals);
         return "home";
     }
 
@@ -136,12 +144,29 @@ public class HomeController {
     public String showAllMeals(Model model){
         List<Meal> listAllMeals = mealRepo.findAll();
         model.addAttribute("listAllMeals", listAllMeals);
+        List<CurrentMeals> currentMealsList = currentMealsRepo.findAll();
+        model.addAttribute("currentMealsList",currentMealsList);
         return "allmeals";
     }
 
     @GetMapping("/choosemeals")
     public String showChooseMeals(Model model){
         return "choosemeals";
+    }
+
+    @PostMapping("/successaddedmeals")
+    public String postSuccessAddedMeals(HttpSession session, Model model, @Param("searchid") Integer id, @Param("searchmealcode1") Integer mealcode1,
+                                  @Param("searchmealcode2") Integer mealcode2, @Param("searchmealcode3") Integer mealcode3, @Param("searchmealcode4") Integer mealcode4){
+        User u = userServices.findByID((Integer) id);
+        u.getMeals().clear();
+        u.getMeals().add(mealRepo.getById((Integer) mealcode1));
+        u.getMeals().add(mealRepo.getById((Integer) mealcode2));
+        u.getMeals().add(mealRepo.getById((Integer) mealcode3));
+        u.getMeals().add(mealRepo.getById((Integer) mealcode4));
+        List<Meal> userMealsList = u.getMeals();
+        model.addAttribute("userMealsList", userMealsList);
+        userServices.saveUser(u);
+        return "successaddedmeals";
     }
 
     @GetMapping("/deliveries")
@@ -153,6 +178,5 @@ public class HomeController {
     public String showViewOrders(Model model){
         return "vieworders";
     }
-
 
 }

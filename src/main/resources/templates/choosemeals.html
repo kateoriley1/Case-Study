@@ -11,128 +11,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Zen+Tokyo+Zoo&family=Montserrat:wght@200&display=swap" rel="stylesheet">
 
-    <style type = "text/css">
-        h1 {
-            text-align: left;
-            margin-top: 1%;
-            margin-bottom: 0%;
-            font-family: 'Zen Tokyo Zoo', cursive;
-            font-size: 50px;
-            /*color: rgba(232,167,76,1); */
-            background: rgba(232,167,76,1);
-            background: linear-gradient(90deg, rgba(238,209,225,1) 0%,rgba(235,153,221,1) 10%, rgba(231,111,90,1) 20%, rgba(232,167,76,1) 30%, rgba(232,167,76,1) 100%);
-            background-size: 100%;
-            -webkit-background-clip: text;
-            -moz-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            -moz-text-fill-color: transparent;
-        }
+    <link rel="stylesheet" href="choosemealsstyle.css">
 
-        img {
-            object-fit: cover;
-            box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-        }
-        header {
-            position: fixed;
-            z-index: 1;
-            background-color: white;
-            height:100px;
-            width: 100%;
-            overflow:hidden;
-            top: 0%;
-        }
-        header span {
-            color:palevioletred;
-            margin-top: 0.02%;
-            font-family: 'Montserrat', sans-serif;
-        }
-        body {
-            /* background: linear-gradient(90deg, rgba(238,209,225,1) 0%, rgba(235,153,221,1) 30%, rgba(231,111,90,1) 65%, rgba(232,167,76,1) 100%);
-            */
-            background: white;
-        }
-
-        section {
-            padding-top: 80px;
-            font-family: 'Montserrat', sans-serif;
-            color: black;
-        }
-
-        .column {
-            float: left;
-            width: 25%;
-            text-align: center;
-        }
-        #highlightedmeal {
-            width:100%;
-            padding-bottom: 10px;
-            height: 400px;
-            object-fit: cover;
-            box-shadow: none;
-        }
-        .dropdown {
-            top: 42px;
-            right: 100px;
-            position: fixed;
-        }
-
-        .dropdown-content {
-            display:none;
-            position: absolute;
-            background-color: #f9f9f9;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            padding: 12px 16px;
-            z-index: 1;
-            min-width: 80px;
-        }
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-        .dropdown-content a {
-            color: palevioletred;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .dropdown-content a:hover {
-            background-color: #f1f1f1
-        }
-
-        button {
-            border: 0px;
-            background: linear-gradient(90deg, rgba(238,209,225,1) 0%, rgba(235,153,221,1) 30%, rgba(231,111,90,1) 65%, rgba(232,167,76,1) 100%);
-            color: white;
-            font-size: large;
-        }
-        td p {
-            font-family: 'Montserrat', sans-serif;
-            color: black;
-        }
-        td {
-            text-align: center;
-        }
-        table {
-            border-collapse: collapse;
-            border-spacing: 0;
-        }
-        .LeftLabels {
-            font-weight: bold;
-        }
-        .submitbutton {
-            border: 0px;
-            background: linear-gradient(90deg, rgba(238,209,225,1) 0%, rgba(235,153,221,1) 30%, rgba(231,111,90,1) 65%, rgba(232,167,76,1) 100%);
-            color: white;
-            float: right;
-            font-size: large;
-            margin: 20px;
-        }
-    </style>
 </head>
 <head>
-    <title>Home Page</title>
+    <title>Choose Meals</title>
 
 
     </style>
@@ -156,7 +39,6 @@
     <img src = "https://images.unsplash.com/photo-1541014741259-de529411b96a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1567&q=80" id = "highlightedmeal"/>
     <p class = "LeftLabels">Get excited! You have 4 meals to choose from these delicious options:</p>
     <div style="overflow-x:auto;">
-        <form>
             <table style="width:100%">
                 <tr>
                     <td><img src = "https://images.unsplash.com/photo-1484980972926-edee96e0960d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80" width = "300px" height = "300px" /></td>
@@ -171,12 +53,6 @@
                     <td><p>Tofu and vegetable summer rolls with spicy peanut dipping sauce</p></td>
                 </tr>
                 <tr>
-                    <td><p><input type = "text" id = "qty1" placeholder = "0" /></p></td>
-                    <td><p><input type = "text" id = "qty2" placeholder = "0" /></p></td>
-                    <td><p><input type = "text" id = "qty3" placeholder = "0" /></p></td>
-                    <td><p><input type = "text" id = "qty4" placeholder = "0" /></p></td>
-                </tr>
-                <tr>
                     <td><img src = "https://images.unsplash.com/photo-1498601761256-9e93c6f5c181?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1442&q=80" width = "300px" height = "300px" /></td>
                     <td><img src = "https://images.unsplash.com/photo-1580916883250-437bcb0fec1d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80" width = "300px" height = "300px" /></td>
                     <td><img src = "https://images.unsplash.com/photo-1551978129-b73f45d132eb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1408&q=80" width = "300px" height = "300px" /></td>
@@ -188,14 +64,19 @@
                     <td><p>Flatbread with arugala, fresh tomato, sun dried tomato, red onion, and balsamic glaze</p></td>
                     <td><p>Roasted stuffed eggplant topped with cashew cream paired with a tomato, red onion, and bell pepper salad</p></td>
                 </tr>
-                <tr>
-                    <td><p><input type = "text" id = "qty5" placeholder = "0" /></p></td>
-                    <td><p><input type = "text" id = "qty6" placeholder = "0" /></p></td>
-                    <td><p><input type = "text" id = "qty7" placeholder = "0" /></p></td>
-                    <td><p><input type = "text" id = "qty8" placeholder = "0" /></p></td>
-                </tr>
             </table>
-            <input type = "submit" value = "Submit" class = "submitbutton">
+    </div>
+    <div>
+        <form th:action = "@{/successaddedmeals}" method = "post">
+            <p th:text = "${session.user.id}"></p>
+            <label>Please enter the number above</label>
+            <input type ="text" name ="id" id = "id" th:value = "${id}">
+            <label>Meal Code</label>
+            <input type ="text" name = "mealcode1" id = "mealcode1" th:value = "${mealcode1}">
+            <input type ="text" name = "mealcode2" id = "mealcode2" th:value = "${mealcode2}">
+            <input type ="text" name = "mealcode3" id = "mealcode3" th:value = "${mealcode3}">
+            <input type ="text" name = "mealcode4" id = "mealcode4" th:value = "${mealcode4}">
+            <input type = "submit" value = "Choose Meal">
         </form>
     </div>
 </section>

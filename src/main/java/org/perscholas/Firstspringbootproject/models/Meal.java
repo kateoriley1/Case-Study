@@ -4,12 +4,10 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 @Getter
@@ -36,5 +34,8 @@ public class Meal {
     String mealinstructions;
     @NonNull
     String photourl;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    List<User> users;
 
 }

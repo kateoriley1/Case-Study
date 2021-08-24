@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset = "utf-8">
+    <meta name = "description" content ="This is home page or landing page" >
+    <meta name = "keyword" content = "html java mysql put 10 or 15 keywords for google">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Choose  Meals</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Tokyo+Zoo&family=Montserrat:wght@200&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="choosemealsstyle.css">
+
+</head>
+<head>
+    <title>Choose Meals</title>
+
+
+    </style>
+</head>
+
+<body>
+<header>
+    <h1>More Than Salad</h1>
+    <span id="changeme">Hope you're having an amazing day!</span>
+
+    <div class="dropdown">
+        <button>Menu</button>
+        <div class="dropdown-content">
+            <a href="#">Link 1</a>
+            <a href="#">Link 2</a>
+            <a href="#">Link 3</a>
+        </div>
+    </div>
+</header>
+<section>
+    <h2>Success! Added meals</h2>
+    <p class = "LeftLabels">Your meals this week:</p>
+    <div style="overflow-x:auto;">
+        <table style="width:100%">
+            <tr>
+                <td><img th:attr="src=${userMealsList[0].photourl}" width = "300px" height = "300px" /></td>
+                <td><img th:attr="src=${userMealsList[1].photourl}" width = "300px" height = "300px" /></td>
+                <td><img th:attr="src=${userMealsList[2].photourl}" width = "300px" height = "300px" /></td>
+                <td><img th:attr="src=${userMealsList[3].photourl}" width = "300px" height = "300px" /></td>
+            </tr>
+            <tr>
+                <td><p th:text="${userMealsList[0].mealdescription}"></p></td>
+                <td><p th:text="${userMealsList[1].mealdescription}"></p></td>
+                <td><p th:text="${userMealsList[2].mealdescription}"></p></td>
+                <td><p th:text="${userMealsList[3].mealdescription}"></p></td>
+            </tr>
+        </table>
+    </div>
+</section>
+<footer></footer>
+</body>
+</html>

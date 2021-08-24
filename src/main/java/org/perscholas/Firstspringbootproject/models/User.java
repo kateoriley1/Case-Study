@@ -51,7 +51,7 @@ public class User {
         //@Pattern(message="Password must be atleast 8 characters, 1 Uppercase, 1 Lowercase, 1 digit, and a special character.", regexp="^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$")
         String password;
 
-        @OneToMany (cascade = CascadeType.ALL)
+        @ManyToMany (cascade = CascadeType.ALL)
         List<Meal> meals;
 
 
