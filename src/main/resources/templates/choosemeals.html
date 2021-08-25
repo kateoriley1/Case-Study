@@ -48,9 +48,15 @@
                 </tr>
                 <tr>
                     <td><p th:text="${currentmeals[0].mealdescription}"></p></td>
-                    <td><p th:text="${session.user.meals[1].mealdescription}"></p></td>
-                    <td><p th:text="${session.user.meals[2].mealdescription}"></p></td>
-                    <td><p th:text="${session.user.meals[3].mealdescription}"></p></td>
+                    <td><p th:text="${currentmeals[1].mealdescription}"></p></td>
+                    <td><p th:text="${currentmeals[2].mealdescription}"></p></td>
+                    <td><p th:text="${currentmeals[3].mealdescription}"></p></td>
+                </tr>
+                <tr>
+                    <td><p th:text="${currentmeals[0].mealcode}"></p></td>
+                    <td><p th:text="${currentmeals[1].mealcode}"></p></td>
+                    <td><p th:text="${currentmeals[2].mealcode}"></p></td>
+                    <td><p th:text="${currentmeals[3].mealcode}"></p></td>
                 </tr>
                 <tr>
                     <td><img th:attr="src=${currentmeals[4].photourl}" width = "300px" height = "300px" /></td>
@@ -59,23 +65,34 @@
                     <td><img th:attr="src=${currentmeals[7].photourl}" width = "300px" height = "300px" /></td>
                 </tr>
                 <tr>
-                    <td><p>Vegetable stir fry with soba noodles and sesame</p></td>
-                    <td><p>Arugala, apple, pomegranate, and walnut salad with citrus vinegarette</p></td>
-                    <td><p>Flatbread with arugala, fresh tomato, sun dried tomato, red onion, and balsamic glaze</p></td>
-                    <td><p>Roasted stuffed eggplant topped with cashew cream paired with a tomato, red onion, and bell pepper salad</p></td>
+                    <td><p th:text="${currentmeals[4].mealdescription}"></p></td>
+                    <td><p th:text="${currentmeals[5].mealdescription}"></p></td>
+                    <td><p th:text="${currentmeals[6].mealdescription}"></p></td>
+                    <td><p th:text="${currentmeals[7].mealdescription}"></p></td>
+                </tr>
+                <tr>
+                    <td><p th:text="${currentmeals[4].mealcode}"></p></td>
+                    <td><p th:text="${currentmeals[5].mealcode}"></p></td>
+                    <td><p th:text="${currentmeals[6].mealcode}"></p></td>
+                    <td><p th:text="${currentmeals[7].mealcode}"></p></td>
                 </tr>
             </table>
     </div>
     <div>
         <form th:action = "@{/successaddedmeals}" method = "post">
-            <p th:text = "${session.user.id}"></p>
-            <label>Please enter the number above</label>
-            <input type ="text" name ="id" id = "id" th:value = "${id}">
-            <label>Meal Code</label>
+<!--            <p th:text = "${session.user.id}"></p>-->
+<!--            <label>Please enter the number above</label>-->
+<!--            <input type ="text" name ="id" id = "id" th:value = "${id}">-->
+            <label>Please enter 4 meal codes. Duplicates are allowed.</label>
+            <br/>
             <input type ="text" name = "mealcode1" id = "mealcode1" th:value = "${mealcode1}">
+            <br/>
             <input type ="text" name = "mealcode2" id = "mealcode2" th:value = "${mealcode2}">
+            <br/>
             <input type ="text" name = "mealcode3" id = "mealcode3" th:value = "${mealcode3}">
+            <br/>
             <input type ="text" name = "mealcode4" id = "mealcode4" th:value = "${mealcode4}">
+            <br/>
             <input type = "submit" value = "Choose Meal">
         </form>
     </div>

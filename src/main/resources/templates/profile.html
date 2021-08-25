@@ -16,16 +16,33 @@
 
 </head>
 <body>
+<!--<header>-->
+<!--    <h1>More Than Salad</h1>-->
+<!--    <span id="changeme">Hope you're having an amazing day!</span>-->
+
+<!--    <div class="dropdown">-->
+<!--        <button>Menu</button>-->
+<!--        <div class="dropdown-content">-->
+<!--            <a href="/profile">Profile</a>-->
+<!--            <a href="/home">Home</a>-->
+<!--            <a href="#">Link 3</a>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</header>-->
 <header>
     <h1>More Than Salad</h1>
-    <span id="changeme">Hope you're having an amazing day!</span>
-
+    <span id="changeme">Please press any key</span>
+    <span th:text="${session.user.firstname} + '!'"></span>
     <div class="dropdown">
         <button>Menu</button>
         <div class="dropdown-content">
             <a href="/profile">Profile</a>
             <a href="/home">Home</a>
-            <a href="#">Link 3</a>
+            <a href="/choosemeals">Meals</a>
+            <a href="/addmeal">Add Meal</a>
+            <a href="/vieworders">View Orders</a>
+            <a href="/deliveries">Deliveries</a>
+            <a href="/allmeals">All Meals</a>
         </div>
     </div>
 </header>
@@ -38,22 +55,20 @@
                 <tr>
                     <td>First Name: <span th:text="${session.user.firstname}"></span></td>
                     <td>Last Name: <span th:text="${session.user.lastname}"></span></td>
-                    <td>Email: <span th:text="${session.user.email}"></span></td>
+                    <td>Email: <span th:text="${session.user.getEmail()}"></span></td>
                 </tr>
                 <tr>
                     <td><p><input type = "text" name ="fname" id = "fname" placeholder="New First Name" /></p></td>
-                    <td><p><input type = "text" id = "lname" placeholder = "New Last Name" /></p></td>
-                    <td><p><input type = "text" id = "email" placeholder = "New Email" /></p></td>
+                    <td><p><input type = "text" name = "lname" id = "lname" placeholder = "New Last Name" /></p></td>
+                    <td><p><input type = "text" name = "email" id = "email" placeholder = "New Email" /></p></td>
                 </tr>
                 <tr>
-                    <td>Phone: phone</td><!-- <p th:text="${session.user.phone}"></p> -->
                     <td>Username: <span th:text="${session.user.username}"></span></td>
                     <td>Password: <span th:text="${session.user.password}"></span></td>
                 </tr>
                 <tr>
-                    <td><p><input type = "text" id = "phone" placeholder = "New Phone" /></p></td>
-                    <td><p><input type = "text" id = "uname" placeholder = "New Username" /></p></td>
-                    <td><p><input type = "text" id = "pass" placeholder = "New Password" /></p></td>
+                    <td><p><input type = "text" name = "uname" id = "uname" placeholder = "New Username" /></p></td>
+                    <td><p><input type = "text" name = "pass" id = "pass" placeholder = "New Password" /></p></td>
                 </tr>
             </table>
             <input type = "submit" value = "Submit" class = "submitbutton" id = "submitContactUpdate">
@@ -64,68 +79,66 @@
 <section>
     <p class = "LeftLabels">Delivery Info</p>
     <div style="overflow-x:auto;">
-        <form>
+        <form th:action = "@{/updatedshipping}" method = "post">
             <table style="width:100%">
                 <tr>
-                    <td>Delivery date/time: Wednesdays at 3pm</td>
-                    <td>Shipping Address 1: 123 E. 5th St.</td>
-                    <td>Shipping Address 2: apt. 123</td>
+                    <td>Shipping Address 1: <span th:text="${cs.getCustomershipadd1()}"></span></td>
+                    <td>Shipping Address 2: <span th:text="${cs.getCustomershipadd2()}"></span></td>
+                    <td>City: <span th:text="${cs.getCustomercity()}"></span></td>
                 </tr>
                 <tr>
-                    <td><p><input type = "text" id = "ddate" placeholder = "0" /></p></td>
-                    <td><p><input type = "text" id = "shipadd1" placeholder = "0" /></p></td>
-                    <td><p><input type = "text" id = "shipadd2" placeholder = "0" /></p></td>
+                    <td><p><input type = "text" name ="customershipadd1" id = "customershipadd1" placeholder="New Address Line 1" /></p></td>
+                    <td><p><input type = "text" name ="customershipadd2" id = "customershipadd2" placeholder="New Address Line 2" /></p></td>
+                    <td><p><input type = "text" name ="customercity" id = "customercity" placeholder="New City" /></p></td>
                 </tr>
                 <tr>
-                    <td>City: phx</td>
-                    <td>State: az</td>
-                    <td>zip code: 12345</td>
+                    <td>State: <span th:text="${cs.getCustomerstate()}"></span></td>
+                    <td>Zip Code: <span th:text="${cs.getCustomerzip()}"></span></td>
                 </tr>
                 <tr>
-                    <td><p><input type = "text" id = "city" placeholder = "0" /></p></td>
-                    <td><p><input type = "text" id = "state" placeholder = "0" /></p></td>
-                    <td><p><input type = "text" id = "zip" placeholder = "0" /></p></td>
+                    <td><p><input type = "text" name ="customerstate" id = "customerstate" placeholder="New State" /></p></td>
+                    <td><p><input type = "text" name ="customerzip" id = "customerzip" placeholder="New Zip Code" /></p></td>
+                    <input type = "submit" value = "Submit" class = "submitbutton" id = "submitDeliveryUpdate">
                 </tr>
             </table>
-            <input type = "submit" value = "Submit" class = "submitbutton" id = "submitDeliveryUpdate">
         </form>
         <button onclick="viewUpdateDeliveryForm()">Update Delivery Info</button>
     </div>
 </section>
-<section>
-    <p class = "LeftLabels">Payment Info</p>
-    <div style="overflow-x:auto;">
-        <form>
-            <table style="width:100%">
-                <tr>
-                    <td>Card number: 4000 8000 7600 9000</td>
-                </tr>
-                <tr>
-                    <td><p><input type = "text" id = "cardnum" placeholder = "0" /></p></td>
-                </tr>
-            </table>
-            <input type = "submit" value = "Submit" class = "submitbutton" id = "submitPaymentUpdate">
-        </form>
-        <button onclick="viewUpdatePaymentForm()">Update Payment Info</button>
-    </div>
-</section>
-<section>
-    <p class = "LeftLabels">Meal Info</p>
-    <div style="overflow-x:auto;">
-        <form>
-            <table style="width:100%">
-                <tr>
-                    <td>Number of meals per week: 4</td>
-                </tr>
-                <tr>
-                    <td><p><input type = "text" id = "mealnum" placeholder = "0" /></p></td>
-                </tr>
-            </table>
-            <input type = "submit" value = "Submit" class = "submitbutton" id = "submitMealUpdate">
-        </form>
-        <button onclick="viewUpdateMealForm()">Update Meal Info</button>
-    </div>
-</section>
+<!--<section>-->
+<!--    <p class = "LeftLabels">Payment Info</p>-->
+<!--    <div style="overflow-x:auto;">-->
+<!--        <form>-->
+<!--            <table style="width:100%">-->
+<!--                <tr>-->
+<!--                    <td>Card number: 4000 8000 7600 9000</td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    <td><p><input type = "text" id = "cardnum" placeholder = "0" /></p></td>-->
+<!--                </tr>-->
+<!--            </table>-->
+<!--            <input type = "submit" value = "Submit" class = "submitbutton" id = "submitPaymentUpdate">-->
+<!--        </form>-->
+<!--        <button onclick="viewUpdatePaymentForm()">Update Payment Info</button>-->
+<!--    </div>-->
+<!--</section>-->
+<!--<section>-->
+<!--    <p class = "LeftLabels">Meal Info</p>-->
+<!--    <div style="overflow-x:auto;">-->
+<!--        <form>-->
+<!--            <table style="width:100%">-->
+<!--                <tr>-->
+<!--                    <td>Number of meals per week: 4</td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    <td><p><input type = "text" id = "mealnum" placeholder = "0" /></p></td>-->
+<!--                </tr>-->
+<!--            </table>-->
+<!--            <input type = "submit" value = "Submit" class = "submitbutton" id = "submitMealUpdate">-->
+<!--        </form>-->
+<!--        <button onclick="viewUpdateMealForm()">Update Meal Info</button>-->
+<!--    </div>-->
+<!--</section>-->
 <section>
     <p class = "LeftLabels">Cancel</p>
     <form action="https://google.com">
@@ -139,18 +152,16 @@
         document.getElementById('fname').style.display='block';
         document.getElementById('lname').style.display='block';
         document.getElementById('email').style.display='block';
-        document.getElementById('phone').style.display='block';
         document.getElementById('uname').style.display='block';
         document.getElementById('pass').style.display='block';
         document.getElementById('submitContactUpdate').style.display='block';
     }
     function viewUpdateDeliveryForm(){
-        document.getElementById('ddate').style.display='block';
-        document.getElementById('shipadd1').style.display='block';
-        document.getElementById('shipadd2').style.display='block';
-        document.getElementById('city').style.display='block';
-        document.getElementById('state').style.display='block';
-        document.getElementById('zip').style.display='block';
+        document.getElementById('customershipadd1').style.display='block';
+        document.getElementById('customershipadd2').style.display='block';
+        document.getElementById('customercity').style.display='block';
+        document.getElementById('customerstate').style.display='block';
+        document.getElementById('customerzip').style.display='block';
         document.getElementById('submitDeliveryUpdate').style.display='block';
     }
     function viewUpdatePaymentForm(){
@@ -159,5 +170,43 @@
     function viewUpdateMealForm(){
         document.getElementById('mealnum').style.display='block';
     }
+        console.log("=======im trying to change words=========")
+        document.addEventListener('keypress', custommessage());
+        function custommessage()
+        {
+            var a = new Date();
+            var c = getWeekday(a.getDay());
+            console.log("Happy " + c + "!");
+            document.getElementById('changeme').innerHTML="Happy " + c + ",";
+        }
+        function getWeekday(n)
+        {
+            var weekday = "day";
+            switch(n)
+        {
+            case 0:
+            weekday = "Sunday";
+            break;
+            case 1:
+            weekday = "Monday";
+            break;
+            case 2:
+            weekday = "Tuesday";
+            break;
+            case 3:
+            weekday = "Wednesday";
+            break;
+            case 4:
+            weekday = "Thursday";
+            break;
+            case 5:
+            weekday = "Friday";
+            break;
+            case 6:
+            weekday = "Saturday";
+            break;
+        }
+            return weekday;
+        }
 </script>
 </html>

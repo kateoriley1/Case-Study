@@ -38,7 +38,7 @@
     </thead>
     <tbody>
     <tr th:if="${currentMealsList.empty}">
-        <td colspan="2"> No Mealss Available </td>
+        <td colspan="2"> No Meals Available </td>
     </tr>
     <tr th:each="lu : ${currentMealsList}">
         <td><span th:text="${lu.mealcode}"></span></td>

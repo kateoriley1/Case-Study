@@ -40,9 +40,6 @@ public class User {
         @NonNull
         String email;
 
-//        @NotNull
-//        Long phone;
-
         @NotBlank(message = "Please enter a username.")
         @NonNull
         String username;

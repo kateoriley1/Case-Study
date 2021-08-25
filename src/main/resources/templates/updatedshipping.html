@@ -16,19 +16,6 @@
 
 </head>
 <body>
-<!--<header>-->
-<!--    <h1>More Than Salad</h1>-->
-<!--    <span id="changeme">Hope you're having an amazing day!</span>-->
-
-<!--    <div class="dropdown">-->
-<!--        <button>Menu</button>-->
-<!--        <div class="dropdown-content">-->
-<!--            <a href="/profile">Profile</a>-->
-<!--            <a href="/home">Home</a>-->
-<!--            <a href="#">Link 3</a>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</header>-->
 <header>
     <h1>More Than Salad</h1>
     <span id="changeme">Please press any key</span>
@@ -47,19 +34,19 @@
     </div>
 </header>
 <section>
-    <h2>Updated Contact Info:</h2>
+    <h2>Updated Shipping Info:</h2>
     <div style="overflow-x:auto;">
-            <table style="width:100%">
-                <tr>
-                    <td>First Name: <span th:text="${session.user.firstname}"></span></td>
-                    <td>Last Name: <span th:text="${session.user.lastname}"></span></td>
-                    <td>Email: <span th:text="${session.user.email}"></span></td>
-                </tr>
-                <tr>
-                    <td>Username: <span th:text="${session.user.username}"></span></td>
-                    <td>Password: <span th:text="${session.user.password}"></span></td>
-                </tr>
-            </table>
+        <table style="width:100%">
+            <tr>
+                <td>Shipping Address 1: <span th:text="${cs.getCustomershipadd1()}"></span></td>
+                <td>Shipping Address 2: <span th:text="${cs.getCustomershipadd2()}"></span></td>
+                <td>City: <span th:text="${cs.getCustomercity()}"></span></td>
+            </tr>
+            <tr>
+                <td>State: <span th:text="${cs.getCustomerstate()}"></span></td>
+                <td>Zip Code: <span th:text="${cs.getCustomerzip()}"></span></td>
+            </tr>
+        </table>
     </div>
 </section>
 </body>
