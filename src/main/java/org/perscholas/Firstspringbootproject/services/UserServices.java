@@ -66,4 +66,10 @@ public class UserServices {
         }
     }
 
+    public User getByID(Integer id)
+    {
+       return userRepo.getById(id);
+    }
+
+
 }

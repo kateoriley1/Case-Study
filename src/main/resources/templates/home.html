@@ -43,6 +43,8 @@ http://www.thymeleaf.org/thymeleaf-extras-springsecurity4 http://www.thymeleaf.o
 </header>
 <section>
     <img src = "https://images.unsplash.com/photo-1501619951397-5ba40d0f75da?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cGluayUyMG9yYW5nZSUyMHN1bnNldHxlbnwwfDB8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=60" id = "sunsetoftheweek"/>
+    <p class = "LeftLabels">Total meals donated: </p>
+    <p th:text="${mealnum}"></p>
     <p class = "LeftLabels">Your meals this week:</p>
     <p th:if="${session.user.meals.isEmpty()}">No meals selected.</p>
     <div style="overflow-x:auto;">

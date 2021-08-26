@@ -86,17 +86,24 @@ public class HomeController {
         }
         model.addAttribute("currentms", currentms);
         session.setAttribute("user", user);
+        Integer mealnum = userServices.getByID(user.getId()).getTotalmealsdonated();
+        model.addAttribute("mealnum", String.valueOf(mealnum));
         return "home";
     }
 
     @GetMapping("/home")
-    public String showHome(Model model){
+    public String showHome(Model model, @ModelAttribute("user") User user){
         List<Meal> currentms = new ArrayList<>();
         List<Integer> currentMealIds = currentMealsRepo.getAllIds();
         for(Integer mid: currentMealIds) {
-            currentms.add(mealRepo.getById(mid));
+            if (currentMealsRepo.getById(mid).getHighlighted()) {
+                currentms.add(mealRepo.getById(mid));
+            }
         }
         model.addAttribute("currentms", currentms);
+        Integer mealnum = userServices.getByID(user.getId()).getTotalmealsdonated();
+        log.warn(String.valueOf(mealnum));
+        model.addAttribute("mealnum", String.valueOf(mealnum));
         return "home";
     }
 
@@ -146,6 +153,8 @@ public class HomeController {
             cs = customerShippingRepo.findByCustomerid(user.getId());
         }
         model.addAttribute("cs", cs);
+        Integer mealnum = userServices.getByID(user.getId()).getTotalmealsdonated();
+        model.addAttribute("mealnum", String.valueOf(mealnum));
         return "profile";
     }
 
