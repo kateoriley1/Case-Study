@@ -42,13 +42,15 @@ http://www.thymeleaf.org/thymeleaf-extras-springsecurity4 http://www.thymeleaf.o
     </div>
 </header>
 <section>
+    <br/>
+    <br/>
 <form th:action="@{/listusers}">
     <input type="text" name="username" id="username" th:value="${username}" required />
     <input type="text" name="password" id="password" th:value="${password}" required />
     <input type="submit" value="Search" />
     <input type="button" value="Clear" onclick="clearSearch()" />
 </form>
-<h1>User exists with Username And Password:</h1>
+<h2>User exists with Username And Password:</h2>
 <table>
     <thead>
     <tr>
@@ -61,7 +63,7 @@ http://www.thymeleaf.org/thymeleaf-extras-springsecurity4 http://www.thymeleaf.o
     </tr>
     </tbody>
 </table>
-<h1>All Users</h1>
+<h2>All Users</h2>
 <table>
     <thead>
     <tr>
@@ -69,6 +71,9 @@ http://www.thymeleaf.org/thymeleaf-extras-springsecurity4 http://www.thymeleaf.o
         <th> First </th>
         <th> Last </th>
         <th> Email </th>
+        <th> Username </th>
+        <th> Password </th>
+        <th> Meals Donated </th>
     </tr>
     </thead>
     <tbody>
@@ -80,6 +85,9 @@ http://www.thymeleaf.org/thymeleaf-extras-springsecurity4 http://www.thymeleaf.o
         <td><span th:text="${lu.firstname}"></span></td>
         <td><span th:text="${lu.lastname}"></span></td>
         <td><span th:text="${lu.email}"></span></td>
+        <td><span th:text="${lu.username}"></span></td>
+        <td><span th:text="${lu.password}"></span></td>
+        <td><span th:text="${lu.totalmealsdonated}"></span></td>
     </tr>
     </tbody>
 </table>
