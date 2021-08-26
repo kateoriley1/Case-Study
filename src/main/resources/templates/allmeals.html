@@ -41,30 +41,11 @@ http://www.thymeleaf.org/thymeleaf-extras-springsecurity4 http://www.thymeleaf.o
         </div>
     </div>
 </header>
-    <h1>All meals</h1>
-<table>
-    <thead>
-    <tr>
-        <th> ID </th>
-        <th> Name </th>
-        <th> Description </th>
-        <th> Instructions </th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:if="${listAllMeals.empty}">
-        <td colspan="2"> No Users Available </td>
-    </tr>
-    <tr th:each="lu : ${listAllMeals}">
-        <td><span th:text="${lu.mealcode}"></span></td>
-        <td><span th:text="${lu.mealname}"></span></td>
-        <td><span th:text="${lu.mealdescription}"></span></td>
-        <td><span th:text="${lu.mealinstructions}"></span></td>
-        <td><img th:attr="src=${lu.photourl},alt=${lu.mealdescription}"
-                height="300" width="300"/></td>
-    </tr>
-    </tbody>
-</table>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
 <div>
     <h2>Current Meal Options: </h2>
 </div>
@@ -122,9 +103,34 @@ http://www.thymeleaf.org/thymeleaf-extras-springsecurity4 http://www.thymeleaf.o
         <br/>
         <input type = "checkbox">
         <label>I confirm that I have shipped all current orders.</label>
+        <br/>
         <input type = "submit" value = "Update Current Meals">
     </form>
 </div>
+<h2>All meals</h2>
+<table>
+    <thead>
+    <tr>
+        <th> ID </th>
+        <th> Name </th>
+        <th> Description </th>
+        <th> Instructions </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${listAllMeals.empty}">
+        <td colspan="2"> No Users Available </td>
+    </tr>
+    <tr th:each="lu : ${listAllMeals}">
+        <td><span th:text="${lu.mealcode}"></span></td>
+        <td><span th:text="${lu.mealname}"></span></td>
+        <td><span th:text="${lu.mealdescription}"></span></td>
+        <td><span th:text="${lu.mealinstructions}"></span></td>
+        <td><img th:attr="src=${lu.photourl},alt=${lu.mealdescription}"
+                 height="300" width="300"/></td>
+    </tr>
+    </tbody>
+</table>
 </body>
 <script type="text/javascript">
     console.log("=======im trying to change words=========")

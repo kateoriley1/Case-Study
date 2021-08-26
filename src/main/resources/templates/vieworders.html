@@ -1,10 +1,110 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org http://www.thymeleaf.org
+http://www.ultraq.net.nz/thymeleaf/layout http://www.ultraq.net.nz/thymeleaf/layout
+http://www.thymeleaf.org/thymeleaf-extras-springsecurity4 http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset = "utf-8">
+    <meta name = "description" content ="This is home page or landing page" >
+    <meta name = "keyword" content = "html java mysql put 10 or 15 keywords for google">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>View Orders</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Tokyo+Zoo&family=Montserrat:wght@200&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="addmealstyle.css">
+
 </head>
 <body>
-<p>You will be able to view all orders for this week here, like 35 pb and j, 25 burrito, 10 oatmeal, 16 nacho</p>
+<header>
+    <h1>More Than Salad</h1>
+    <span id="changeme">Please press any key</span>
+    <span th:text="${session.user.firstname} + '!'"></span>
+    <div class="dropdown">
+        <button>Menu</button>
+        <div class="dropdown-content">
+            <a href="/profile">Profile</a>
+            <a href="/home">Home</a>
+            <a href="/choosemeals">Meals</a>
+            <a href="/addmeal">Add Meal</a>
+            <a href="/vieworders">View Orders</a>
+            <a href="/deliveries">Deliveries</a>
+            <a href="/allmeals">All Meals</a>
+            <a href="/listusers">View Users</a>
+        </div>
+    </div>
+</header>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<h2>Current Orders: </h2>
+<table>
+    <thead>
+    <tr>
+        <th> Name </th>
+        <th> Description </th>
+        <th> Count </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${mealList.empty}">
+        <td colspan="2"> No Meals Available </td>
+    </tr>
+    <tr th:each="lu : ${mealList}">
+        <td><span th:text="${lu.mealname}"></span></td>
+        <td><span th:text="${lu.mealdescription}"></span></td>
+        <td><span th:text="${lu.getUsers().size()}"></span></td>
+    </tr>
+    </tbody>
+</table>
 </body>
+<script type="text/javascript">
+    console.log("=======im trying to change words=========")
+    document.addEventListener('keypress', custommessage());
+    function custommessage()
+    {
+        var a = new Date();
+        var c = getWeekday(a.getDay());
+        console.log("Happy " + c + "!");
+        document.getElementById('changeme').innerHTML="Happy " + c + ",";
+    }
+    function getWeekday(n)
+    {
+        var weekday = "day";
+        switch(n)
+        {
+            case 0:
+                weekday = "Sunday";
+                break;
+            case 1:
+                weekday = "Monday";
+                break;
+            case 2:
+                weekday = "Tuesday";
+                break;
+            case 3:
+                weekday = "Wednesday";
+                break;
+            case 4:
+                weekday = "Thursday";
+                break;
+            case 5:
+                weekday = "Friday";
+                break;
+            case 6:
+                weekday = "Saturday";
+                break;
+        }
+        return weekday;
+    }
+</script>
 </html>

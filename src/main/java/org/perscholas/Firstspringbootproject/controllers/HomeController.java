@@ -87,6 +87,12 @@ public class HomeController {
         model.addAttribute("currentms", currentms);
         session.setAttribute("user", user);
         Integer mealnum = userServices.getByID(user.getId()).getTotalmealsdonated();
+        if (mealnum == null)
+        {
+            user.setTotalmealsdonated(0);
+            userServices.saveUser(user);
+        }
+        mealnum = userServices.getByID(user.getId()).getTotalmealsdonated();
         model.addAttribute("mealnum", String.valueOf(mealnum));
         return "home";
     }
@@ -214,9 +220,13 @@ public class HomeController {
         User u = (User) session.getAttribute("user");
         u.getMeals().clear();
         u.getMeals().add(mealRepo.getById((Integer) mealcode1));
+        mealRepo.getById(mealcode1).getUsers().add(u);
         u.getMeals().add(mealRepo.getById((Integer) mealcode2));
+        mealRepo.getById(mealcode2).getUsers().add(u);
         u.getMeals().add(mealRepo.getById((Integer) mealcode3));
+        mealRepo.getById(mealcode3).getUsers().add(u);
         u.getMeals().add(mealRepo.getById((Integer) mealcode4));
+        mealRepo.getById(mealcode4).getUsers().add(u);
         List<Meal> userMealsList = u.getMeals();
         model.addAttribute("userMealsList", userMealsList);
         userServices.saveUser(u);
@@ -230,6 +240,8 @@ public class HomeController {
 
     @GetMapping("/vieworders")
     public String showViewOrders(Model model){
+        List<Meal> mealList = mealRepo.findAll();
+        model.addAttribute("mealList", mealList);
         return "vieworders";
     }
 
@@ -297,6 +309,7 @@ public class HomeController {
         List<CurrentMeals> cms =currentMealsRepo.findAll();
         for (CurrentMeals m : cms) {
             currentMealsRepo.delete(m);
+            mealRepo.getById(m.getMealcode()).getUsers().clear();
         }
         for (int i = 0; i<8; i++) {
             CurrentMeals cm = new CurrentMeals(mealcodes[i]);

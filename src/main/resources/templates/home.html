@@ -69,6 +69,12 @@ http://www.thymeleaf.org/thymeleaf-extras-springsecurity4 http://www.thymeleaf.o
                 <td><p th:text="${session.user.meals[2].mealdescription}"></p></td>
                 <td><p th:text="${session.user.meals[3].mealdescription}"></p></td>
             </tr>
+            <tr>
+                <td><p th:text="${session.user.meals[0].mealinstructions}"></p></td>
+                <td><p th:text="${session.user.meals[1].mealinstructions}"></p></td>
+                <td><p th:text="${session.user.meals[2].mealinstructions}"></p></td>
+                <td><p th:text="${session.user.meals[3].mealinstructions}"></p></td>
+            </tr>
         </table>
         </div>
     </div>
