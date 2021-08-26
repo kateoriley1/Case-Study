@@ -51,5 +51,7 @@ public class User {
         @ManyToMany (cascade = CascadeType.ALL)
         List<Meal> meals;
 
+        Integer totalmealsdonated;
+
 
 }

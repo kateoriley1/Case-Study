@@ -1,13 +1,112 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset = "utf-8">
+    <meta name = "description" content ="This is home page or landing page" >
+    <meta name = "keyword" content = "html java mysql put 10 or 15 keywords for google">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Update Current Meals</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Tokyo+Zoo&family=Montserrat:wght@200&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="choosemealsstyle.css">
+
 </head>
 <body>
-<form>
-  <input ty>
-</form>
+<header>
+    <h1>More Than Salad</h1>
+    <span id="changeme">Please press any key</span>
+    <span th:text="${session.user.firstname} + '!'"></span>
+    <div class="dropdown">
+        <button>Menu</button>
+        <div class="dropdown-content">
+            <a href="/profile">Profile</a>
+            <a href="/home">Home</a>
+            <a href="/choosemeals">Meals</a>
+            <a href="/addmeal">Add Meal</a>
+            <a href="/vieworders">View Orders</a>
+            <a href="/deliveries">Deliveries</a>
+            <a href="/allmeals">All Meals</a>
+            <a href="/listusers">View Users</a>
+        </div>
+    </div>
+</header>
+<div>
+    <br/>
+    <br/>
+    <br/>
+    <h2>Success! Current Meal Options: </h2>
+</div>
+<div style="overflow-x:auto;">
+    <table style="width:100%">
+        <tr>
+            <td><img th:attr="src=${currentmeal[0].photourl}" width = "300px" height = "300px" /></td>
+            <td><img th:attr="src=${currentmeal[1].photourl}" width = "300px" height = "300px" /></td>
+            <td><img th:attr="src=${currentmeal[2].photourl}" width = "300px" height = "300px" /></td>
+            <td><img th:attr="src=${currentmeal[3].photourl}" width = "300px" height = "300px" /></td>
+        </tr>
+        <tr>
+            <td><p th:text="${currentmeal[0].mealdescription}"></p></td>
+            <td><p th:text="${currentmeal[1].mealdescription}"></p></td>
+            <td><p th:text="${currentmeal[2].mealdescription}"></p></td>
+            <td><p th:text="${currentmeal[3].mealdescription}"></p></td>
+        </tr>
+        <tr>
+            <td><img th:attr="src=${currentmeal[4].photourl}" width = "300px" height = "300px" /></td>
+            <td><img th:attr="src=${currentmeal[5].photourl}" width = "300px" height = "300px" /></td>
+            <td><img th:attr="src=${currentmeal[6].photourl}" width = "300px" height = "300px" /></td>
+            <td><img th:attr="src=${currentmeal[7].photourl}" width = "300px" height = "300px" /></td>
+        </tr>
+        <tr>
+            <td><p th:text="${currentmeal[4].mealdescription}"></p></td>
+            <td><p th:text="${currentmeal[5].mealdescription}"></p></td>
+            <td><p th:text="${currentmeal[6].mealdescription}"></p></td>
+            <td><p th:text="${currentmeal[7].mealdescription}"></p></td>
+        </tr>
+    </table>
+</div>
 
 </body>
+<script type="text/javascript">
+    console.log("=======im trying to change words=========")
+    document.addEventListener('keypress', custommessage());
+    function custommessage()
+    {
+        var a = new Date();
+        var c = getWeekday(a.getDay());
+        console.log("Happy " + c + "!");
+        document.getElementById('changeme').innerHTML="Happy " + c + ",";
+    }
+    function getWeekday(n)
+    {
+        var weekday = "day";
+        switch(n)
+        {
+            case 0:
+                weekday = "Sunday";
+                break;
+            case 1:
+                weekday = "Monday";
+                break;
+            case 2:
+                weekday = "Tuesday";
+                break;
+            case 3:
+                weekday = "Wednesday";
+                break;
+            case 4:
+                weekday = "Thursday";
+                break;
+            case 5:
+                weekday = "Friday";
+                break;
+            case 6:
+                weekday = "Saturday";
+                break;
+        }
+        return weekday;
+    }
+</script>
 </html>

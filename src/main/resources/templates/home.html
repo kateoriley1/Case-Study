@@ -22,13 +22,6 @@ http://www.thymeleaf.org/thymeleaf-extras-springsecurity4 http://www.thymeleaf.o
     <link rel="stylesheet" href="homepagestyle.css">
 
 </head>
-<head>
-    <title>Home Page</title>
-
-
-    </style>
-</head>
-
 <body>
 <header>
     <h1>More Than Salad</h1>
@@ -44,6 +37,7 @@ http://www.thymeleaf.org/thymeleaf-extras-springsecurity4 http://www.thymeleaf.o
             <a href="/vieworders">View Orders</a>
             <a href="/deliveries">Deliveries</a>
             <a href="/allmeals">All Meals</a>
+            <a href="/listusers">View Users</a>
         </div>
     </div>
 </header>
@@ -80,16 +74,16 @@ http://www.thymeleaf.org/thymeleaf-extras-springsecurity4 http://www.thymeleaf.o
     <div style="overflow-x:auto;">
         <table style="width:100%">
             <tr>
-                <td><img th:attr="src=${allMeals[1].photourl}" width = "300px" height = "300px" /></td>
-                <td><img th:attr="src=${allMeals[4].photourl}" width = "300px" height = "300px" /></td>
-                <td><img th:attr="src=${allMeals[7].photourl}" width = "300px" height = "300px" /></td>
-                <td><img th:attr="src=${allMeals[5].photourl}" width = "300px" height = "300px" /></td>
+                <td><img th:attr="src=${currentms[0].photourl}" width = "300px" height = "300px" /></td>
+                <td><img th:attr="src=${currentms[1].photourl}" width = "300px" height = "300px" /></td>
+                <td><img th:attr="src=${currentms[2].photourl}" width = "300px" height = "300px" /></td>
+                <td><img th:attr="src=${currentms[3].photourl}" width = "300px" height = "300px" /></td>
                 </tr>
             <tr>
-                <td><p th:text="${allMeals[1].mealdescription}"></p></td>
-                <td><p th:text="${allMeals[4].mealdescription}"></p></td>
-                <td><p th:text="${allMeals[7].mealdescription}"></p></td>
-                <td><p th:text="${allMeals[5].mealdescription}"></p></td>
+                <td><p th:text="${currentms[0].mealdescription}"></p></td>
+                <td><p th:text="${currentms[1].mealdescription}"></p></td>
+                <td><p th:text="${currentms[2].mealdescription}"></p></td>
+                <td><p th:text="${currentms[3].mealdescription}"></p></td>
             </tr>
         </table>
     </div>

@@ -12,4 +12,5 @@ public interface CurrentMealsRepo extends JpaRepository<CurrentMeals, Integer> {
     List<CurrentMeals> findAll();
     @Query("select p.id from #{#entityName} p")
     List<Integer> getAllIds();
+    CurrentMeals findByMealcode(Integer mealcode);
 }

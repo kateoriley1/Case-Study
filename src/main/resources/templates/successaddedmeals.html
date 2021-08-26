@@ -5,7 +5,7 @@
     <meta name = "description" content ="This is home page or landing page" >
     <meta name = "keyword" content = "html java mysql put 10 or 15 keywords for google">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Choose  Meals</title>
+    <title>Successfully Added Meals</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,24 +14,22 @@
     <link rel="stylesheet" href="choosemealsstyle.css">
 
 </head>
-<head>
-    <title>Choose Meals</title>
-
-
-    </style>
-</head>
-
 <body>
 <header>
     <h1>More Than Salad</h1>
-    <span id="changeme">Hope you're having an amazing day!</span>
-
+    <span id="changeme">Please press any key</span>
+    <span th:text="${session.user.firstname} + '!'"></span>
     <div class="dropdown">
         <button>Menu</button>
         <div class="dropdown-content">
-            <a href="#">Link 1</a>
-            <a href="#">Link 2</a>
-            <a href="#">Link 3</a>
+            <a href="/profile">Profile</a>
+            <a href="/home">Home</a>
+            <a href="/choosemeals">Meals</a>
+            <a href="/addmeal">Add Meal</a>
+            <a href="/vieworders">View Orders</a>
+            <a href="/deliveries">Deliveries</a>
+            <a href="/allmeals">All Meals</a>
+            <a href="/listusers">View Users</a>
         </div>
     </div>
 </header>
@@ -57,4 +55,44 @@
 </section>
 <footer></footer>
 </body>
+<script type="text/javascript">
+    console.log("=======im trying to change words=========")
+    document.addEventListener('keypress', custommessage());
+    function custommessage()
+    {
+        var a = new Date();
+        var c = getWeekday(a.getDay());
+        console.log("Happy " + c + "!");
+        document.getElementById('changeme').innerHTML="Happy " + c + ",";
+    }
+    function getWeekday(n)
+    {
+        var weekday = "day";
+        switch(n)
+        {
+            case 0:
+                weekday = "Sunday";
+                break;
+            case 1:
+                weekday = "Monday";
+                break;
+            case 2:
+                weekday = "Tuesday";
+                break;
+            case 3:
+                weekday = "Wednesday";
+                break;
+            case 4:
+                weekday = "Thursday";
+                break;
+            case 5:
+                weekday = "Friday";
+                break;
+            case 6:
+                weekday = "Saturday";
+                break;
+        }
+        return weekday;
+    }
+</script>
 </html>

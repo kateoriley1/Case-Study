@@ -17,4 +17,10 @@ import javax.persistence.Id;
 public class CurrentMeals {
     @Id
     Integer mealcode;
+
+    Boolean highlighted;
+
+    public CurrentMeals(Integer mealcode) {
+        this.mealcode = mealcode;
+    }
 }

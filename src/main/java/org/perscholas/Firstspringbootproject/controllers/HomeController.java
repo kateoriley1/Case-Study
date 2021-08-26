@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.lang.reflect.Array;
 import java.util.*;
 
 @Controller
@@ -50,11 +51,6 @@ public class HomeController {
         log.warn("requested index");
         return "index";
     }
-    @GetMapping({ "/alllinks"})
-    public String showAllLinks(Model model) {
-        log.warn("requested all links");
-        return "alllinks";
-    }
 
     @GetMapping("/listusers")
     public String listUsers(Model model, @Param("searchUsername") String username, @Param("searchPass") String password)
@@ -81,16 +77,26 @@ public class HomeController {
 //        List<Meal> userMealslist = user.getMeals();
         model.addAttribute("user", user);
 //        model.addAttribute("userMealsList", userMealslist);
-        List<Meal> allMeals = mealRepo.findAll();
-        model.addAttribute("allMeals", allMeals);
+        List<Meal> currentms = new ArrayList<>();
+        List<Integer> currentMealIds = currentMealsRepo.getAllIds();
+        for(Integer mid: currentMealIds) {
+            if (currentMealsRepo.getById(mid).getHighlighted()) {
+                currentms.add(mealRepo.getById(mid));
+            }
+        }
+        model.addAttribute("currentms", currentms);
         session.setAttribute("user", user);
         return "home";
     }
 
     @GetMapping("/home")
     public String showHome(Model model){
-        List<Meal> allMeals = mealRepo.findAll();
-        model.addAttribute("allMeals", allMeals);
+        List<Meal> currentms = new ArrayList<>();
+        List<Integer> currentMealIds = currentMealsRepo.getAllIds();
+        for(Integer mid: currentMealIds) {
+            currentms.add(mealRepo.getById(mid));
+        }
+        model.addAttribute("currentms", currentms);
         return "home";
     }
 
@@ -166,8 +172,15 @@ public class HomeController {
     public String showAllMeals(Model model){
         List<Meal> listAllMeals = mealRepo.findAll();
         model.addAttribute("listAllMeals", listAllMeals);
-        List<CurrentMeals> currentMealsList = currentMealsRepo.findAll();
-        model.addAttribute("currentMealsList",currentMealsList);
+        List<Meal> currentmeals = new ArrayList<>();
+        List<Integer> currentMealIds = currentMealsRepo.getAllIds();
+        for(Meal meal:listAllMeals) {
+            if (currentMealIds.contains(meal.getMealcode()))
+            {
+                currentmeals.add(meal);
+            }
+        }
+        model.addAttribute("currentmeals", currentmeals);
         return "allmeals";
     }
 
@@ -254,6 +267,49 @@ public class HomeController {
         }
         customerShippingRepo.save(cs);
         return "updatedshipping";
+    }
+
+    @PostMapping("/updatemealstochoose")
+    public String showUpdateMeals(Model model, @Param("searchmealcode1") Integer mealcode1, @Param("searchmealcode2") Integer mealcode2, @Param("searchmealcode3") Integer mealcode3, @Param("searchmealcode4") Integer mealcode4,
+                                  @Param("searchmealcode5") Integer mealcode5, @Param("searchmealcode6") Integer mealcode6, @Param("searchmealcode7") Integer mealcode7, @Param("searchmealcode8") Integer mealcode8) {
+        Integer[] mealcodes = {mealcode1, mealcode2,mealcode3, mealcode4, mealcode5, mealcode6, mealcode7, mealcode8};
+        for (Integer mc : mealcodes)
+        {
+            log.warn(String.valueOf(mc));
+        }
+        List<User> users = userServices.findAll();
+        for (User user : users) {
+            if (user.getMeals().size() > 0)
+            {
+                user.setTotalmealsdonated(user.getTotalmealsdonated() + user.getMeals().size());
+                user.getMeals().clear();
+            }
+        }
+        List<CurrentMeals> cms =currentMealsRepo.findAll();
+        for (CurrentMeals m : cms) {
+            currentMealsRepo.delete(m);
+        }
+        for (int i = 0; i<8; i++) {
+            CurrentMeals cm = new CurrentMeals(mealcodes[i]);
+            if (i < 4)
+            {
+                cm.setHighlighted(true);
+            }
+            else
+            {
+                cm.setHighlighted(false);
+            }
+            currentMealsRepo.save(cm);
+            log.warn(String.valueOf(cm.getMealcode()));
+
+        }
+        List<Meal> currentmeal = new ArrayList<>();
+        List<Integer> currentMealIds = currentMealsRepo.getAllIds();
+        for(Integer mid: currentMealIds) {
+            currentmeal.add(mealRepo.getById(mid));
+        }
+        model.addAttribute("currentmeal", currentmeal);
+        return "updatemealstochoose";
     }
 
 }

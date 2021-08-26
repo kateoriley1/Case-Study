@@ -1,11 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org http://www.thymeleaf.org
+http://www.ultraq.net.nz/thymeleaf/layout http://www.ultraq.net.nz/thymeleaf/layout
+http://www.thymeleaf.org/thymeleaf-extras-springsecurity4 http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset = "utf-8">
+    <meta name = "description" content ="This is home page or landing page" >
+    <meta name = "keyword" content = "html java mysql put 10 or 15 keywords for google">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>All Meals</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Tokyo+Zoo&family=Montserrat:wght@200&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="homepagestyle.css">
+
 </head>
 <body>
-<h1>All meals</h1>
+<header>
+    <h1>More Than Salad</h1>
+    <span id="changeme">Please press any key</span>
+    <span th:text="${session.user.firstname} + '!'"></span>
+    <div class="dropdown">
+        <button>Menu</button>
+        <div class="dropdown-content">
+            <a href="/profile">Profile</a>
+            <a href="/home">Home</a>
+            <a href="/choosemeals">Meals</a>
+            <a href="/addmeal">Add Meal</a>
+            <a href="/vieworders">View Orders</a>
+            <a href="/deliveries">Deliveries</a>
+            <a href="/allmeals">All Meals</a>
+            <a href="/listusers">View Users</a>
+        </div>
+    </div>
+</header>
+    <h1>All meals</h1>
 <table>
     <thead>
     <tr>
@@ -29,21 +65,105 @@
     </tr>
     </tbody>
 </table>
-<h1>Current meals</h1>
-<table>
-    <thead>
-    <tr>
-        <th> ID </th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:if="${currentMealsList.empty}">
-        <td colspan="2"> No Meals Available </td>
-    </tr>
-    <tr th:each="lu : ${currentMealsList}">
-        <td><span th:text="${lu.mealcode}"></span></td>
-    </tr>
-    </tbody>
-</table>
+<div>
+    <h2>Current Meal Options: </h2>
+</div>
+<div style="overflow-x:auto;">
+    <table style="width:100%">
+        <tr>
+            <td><img th:attr="src=${currentmeals[0].photourl}" width = "300px" height = "300px" /></td>
+            <td><img th:attr="src=${currentmeals[1].photourl}" width = "300px" height = "300px" /></td>
+            <td><img th:attr="src=${currentmeals[2].photourl}" width = "300px" height = "300px" /></td>
+            <td><img th:attr="src=${currentmeals[3].photourl}" width = "300px" height = "300px" /></td>
+        </tr>
+        <tr>
+            <td><p th:text="${currentmeals[0].mealdescription}"></p></td>
+            <td><p th:text="${currentmeals[1].mealdescription}"></p></td>
+            <td><p th:text="${currentmeals[2].mealdescription}"></p></td>
+            <td><p th:text="${currentmeals[3].mealdescription}"></p></td>
+        </tr>
+        <tr>
+            <td><img th:attr="src=${currentmeals[4].photourl}" width = "300px" height = "300px" /></td>
+            <td><img th:attr="src=${currentmeals[5].photourl}" width = "300px" height = "300px" /></td>
+            <td><img th:attr="src=${currentmeals[6].photourl}" width = "300px" height = "300px" /></td>
+            <td><img th:attr="src=${currentmeals[7].photourl}" width = "300px" height = "300px" /></td>
+        </tr>
+        <tr>
+            <td><p th:text="${currentmeals[4].mealdescription}"></p></td>
+            <td><p th:text="${currentmeals[5].mealdescription}"></p></td>
+            <td><p th:text="${currentmeals[6].mealdescription}"></p></td>
+            <td><p th:text="${currentmeals[7].mealdescription}"></p></td>
+        </tr>
+    </table>
+</div>
+<div>
+    <h2>Update current meals:</h2>
+    <h3>Warning, updating current meals will delete current, unfulfilled orders.</h3>
+    <form th:action = "@{/updatemealstochoose}" method = "post">
+        <label>Please enter first 4 meal codes. These will be the highlighted meals.</label>
+        <br/>
+        <input type ="text" name = "mealcode1" id = "mealcode1" th:value = "${mealcode1}">
+        <br/>
+        <input type ="text" name = "mealcode2" id = "mealcode2" th:value = "${mealcode2}">
+        <br/>
+        <input type ="text" name = "mealcode3" id = "mealcode3" th:value = "${mealcode3}">
+        <br/>
+        <input type ="text" name = "mealcode4" id = "mealcode4" th:value = "${mealcode4}">
+        <br/>
+        <label>Please enter next 4 meal codes.</label>
+        <br/>
+        <input type ="text" name = "mealcode5" id = "mealcode5" th:value = "${mealcode5}">
+        <br/>
+        <input type ="text" name = "mealcode6" id = "mealcode6" th:value = "${mealcode6}">
+        <br/>
+        <input type ="text" name = "mealcode7" id = "mealcode7" th:value = "${mealcode7}">
+        <br/>
+        <input type ="text" name = "mealcode8" id = "mealcode8" th:value = "${mealcode8}">
+        <br/>
+        <input type = "checkbox">
+        <label>I confirm that I have shipped all current orders.</label>
+        <input type = "submit" value = "Update Current Meals">
+    </form>
+</div>
 </body>
+<script type="text/javascript">
+    console.log("=======im trying to change words=========")
+    document.addEventListener('keypress', custommessage());
+    function custommessage()
+    {
+        var a = new Date();
+        var c = getWeekday(a.getDay());
+        console.log("Happy " + c + "!");
+        document.getElementById('changeme').innerHTML="Happy " + c + ",";
+    }
+    function getWeekday(n)
+    {
+        var weekday = "day";
+        switch(n)
+        {
+            case 0:
+                weekday = "Sunday";
+                break;
+            case 1:
+                weekday = "Monday";
+                break;
+            case 2:
+                weekday = "Tuesday";
+                break;
+            case 3:
+                weekday = "Wednesday";
+                break;
+            case 4:
+                weekday = "Thursday";
+                break;
+            case 5:
+                weekday = "Friday";
+                break;
+            case 6:
+                weekday = "Saturday";
+                break;
+        }
+        return weekday;
+    }
+</script>
 </html>
